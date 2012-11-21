@@ -1,5 +1,6 @@
 package org.inesgar.DiabloDungeonBridge;
 
+import java.util.Random;
 import java.util.logging.Level;
 
 import org.bukkit.event.Listener;
@@ -14,6 +15,7 @@ public class DiabloDungeonBridge extends JavaPlugin implements Listener
 
 	public DiabloDrops dd;
 	public DungeonMaze dm;
+	public Random random;
 
 	@Override
 	public void onEnable()
@@ -32,6 +34,7 @@ public class DiabloDungeonBridge extends JavaPlugin implements Listener
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
+		random = new Random();
 		getServer().getPluginManager().registerEvents(new DDBListener(this),
 				this);
 	}

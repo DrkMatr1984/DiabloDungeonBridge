@@ -43,7 +43,7 @@ public class DDBListener implements Listener
 			CraftItemStack cis = plugin.dd.dropsAPI.getItem();
 			while (cis == null)
 				cis = plugin.dd.dropsAPI.getItem();
-			items.add(cis);
+			items.add((ItemStack) cis);
 		}
 		event.setContents(items);
 	}
