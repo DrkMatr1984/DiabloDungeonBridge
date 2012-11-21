@@ -1,0 +1,8 @@
+name: DiabloDungeonBridge
+main: org.inesgar.DiabloDungeonBridge.DiabloDungeonBridge
+version: 0.0.1
+author: ToppleTheNun
+description: Makes DiabloDrops and DungeonMaze play better together.
+
+commands:
+permissions:
