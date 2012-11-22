@@ -3,23 +3,25 @@ package org.inesgar.DiabloDungeonBridge;
 import java.util.Random;
 import java.util.logging.Level;
 
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.modcrafting.diablodrops.DiabloDrops;
 import com.timvisee.DungeonMaze.DungeonMaze;
 
-public class DiabloDungeonBridge extends JavaPlugin implements Listener
+public class DiabloDungeonBridge extends JavaPlugin
 {
 
 	public DiabloDrops dd;
 	public DungeonMaze dm;
 	public Random random;
 
+	public static DiabloDungeonBridge instance;
+
 	@Override
 	public void onEnable()
 	{
+		instance = this;
 		dd = checkDiabloDrops();
 		dm = checkDungeonMaze();
 		if (dd == null)

@@ -1,15 +1,12 @@
 package org.inesgar.DiabloDungeonBridge;
 
-import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import com.modcrafting.diablodrops.events.RuinGenerateEvent;
 import com.timvisee.DungeonMaze.event.generation.DMGenerationChestEvent;
@@ -28,24 +25,14 @@ public class DDBListener implements Listener
 	public void onChestGenerate(DMGenerationChestEvent event)
 	{
 		Random rand = event.getRandom();
-		if (!rand.nextBoolean())
-			return;
 		if ((rand.nextInt(10) + 1) != 1)
 		{
 			event.getContents().clear();
 		}
 		Block block = event.getBlock();
-		Chest chestB = ((Chest) block.getState());
-		Inventory chest = chestB.getBlockInventory();
-		List<ItemStack> items = event.getContents();
-		for (int i = 0; i < rand.nextInt(chest.getSize()); i++)
-		{
-			CraftItemStack cis = plugin.dd.dropsAPI.getItem();
-			while (cis == null)
-				cis = plugin.dd.dropsAPI.getItem();
-			items.add((ItemStack) cis);
-		}
-		event.setContents(items);
+		Chest chest = ((Chest) block.getState());
+		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,
+				new DDBTask(chest), 20L * 1);
 	}
 
 	@EventHandler
