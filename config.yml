@@ -1,7 +1,4 @@
 #Configuration#
-Plugin:
-#AutoUpdate the plugin when a update is found#
-  AutoUpdate: true
 ChestFill:
 #Chance is out of 1000#
   Chance: 500
