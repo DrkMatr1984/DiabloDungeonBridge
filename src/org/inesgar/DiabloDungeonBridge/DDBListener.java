@@ -20,30 +20,33 @@ public class DDBListener implements Listener
 
     private final DiabloDungeonBridge plugin;
 
-    public DDBListener(DiabloDungeonBridge plugin)
+    public DDBListener(final DiabloDungeonBridge plugin)
     {
         this.plugin = plugin;
     }
 
+    public DiabloDungeonBridge getPlugin()
+    {
+        return plugin;
+    }
+
     @EventHandler
-    public void onChestGenerate(DMGenerationChestEvent event)
+    public void onChestGenerate(final DMGenerationChestEvent event)
     {
         int chance = plugin.getConfig().getInt("ChestFill.Chance", 500);
         Random rand = event.getRandom();
-        if ((rand.nextInt(1000) + 1) > chance)
+        if (rand.nextInt(1000) + 1 > chance)
             return;
-        if ((rand.nextInt(10) + 1) != 1)
-        {
+        if (rand.nextInt(10) + 1 != 1)
             event.getContents().clear();
-        }
         Block block = event.getBlock();
-        Chest chest = ((Chest) block.getState());
+        Chest chest = (Chest) block.getState();
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,
                 new DDBTask(chest), 20L * 1);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onRuinGenerate(RuinGenerateEvent event)
+    public void onRuinGenerate(final RuinGenerateEvent event)
     {
         Chunk chunk = event.getChunk();
         if (chunk == null)
@@ -56,14 +59,7 @@ public class DDBListener implements Listener
             return;
         if (event.getChunk().getWorld().getGenerator().getClass().getName()
                 .equals("com.timvisee.DungeonMaze.DungeonMazeGenerator"))
-        {
             event.setCancelled(true);
-        }
-    }
-
-    public DiabloDungeonBridge getPlugin()
-    {
-        return plugin;
     }
 
 }
