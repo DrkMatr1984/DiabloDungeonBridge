@@ -44,7 +44,7 @@ public class DDBListener implements Listener
     @EventHandler
     public void onChestGenerate(final DMGenerationChestEvent event)
     {
-        if (plugin.ddcr != null)
+        if ((plugin.ddcr != null) && plugin.ddcr.isEnabled())
         {
             plugin.ddcr.blocks.put(event.getBlock(), new ArrayList<String>());
         }
