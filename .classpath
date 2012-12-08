@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="lib/craftbukkit-1.4.5-R0.2.jar"/>
 	<classpathentry kind="lib" path="lib/DiabloDrops.jar"/>
 	<classpathentry kind="lib" path="lib/DungeonMaze.jar"/>
+	<classpathentry kind="lib" path="lib/DDChestRegen.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

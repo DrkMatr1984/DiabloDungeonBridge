@@ -44,6 +44,10 @@ public class DDBListener implements Listener
     @EventHandler
     public void onChestGenerate(final DMGenerationChestEvent event)
     {
+        if (plugin.ddcr != null)
+        {
+            plugin.ddcr.blocks.put(event.getBlock(), new ArrayList<String>());
+        }
         int chance = plugin.getConfig().getInt("ChestFill.Chance", 500);
         Random rand = event.getRandom();
         if ((rand.nextInt(1000) + 1) > chance)
