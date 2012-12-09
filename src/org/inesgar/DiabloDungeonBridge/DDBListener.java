@@ -44,10 +44,6 @@ public class DDBListener implements Listener
     @EventHandler
     public void onChestGenerate(final DMGenerationChestEvent event)
     {
-        if ((plugin.ddcr != null) && plugin.ddcr.isEnabled())
-        {
-            plugin.ddcr.blocks.put(event.getBlock(), new ArrayList<String>());
-        }
         int chance = plugin.getConfig().getInt("ChestFill.Chance", 500);
         Random rand = event.getRandom();
         if ((rand.nextInt(1000) + 1) > chance)
@@ -57,6 +53,10 @@ public class DDBListener implements Listener
             event.getContents().clear();
         }
         Block block = event.getBlock();
+        if ((plugin.ddcr != null) && plugin.ddcr.isEnabled())
+        {
+            plugin.ddcr.blocks.put(event.getBlock(), new ArrayList<String>());
+        }
         Chest chest = (Chest) block.getState();
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,
                 new DDBTask(chest), 20L * 1);
