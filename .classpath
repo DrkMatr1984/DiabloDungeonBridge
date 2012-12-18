@@ -4,8 +4,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/bukkit-1.4.5-R0.2.jar"/>
 	<classpathentry kind="lib" path="lib/craftbukkit-1.4.5-R0.2.jar"/>
-	<classpathentry kind="lib" path="lib/DiabloDrops.jar"/>
 	<classpathentry kind="lib" path="lib/DungeonMaze.jar"/>
 	<classpathentry kind="lib" path="lib/DDChestRegen.jar"/>
+	<classpathentry kind="lib" path="lib/DiabloDrops.jar"/>
+	<classpathentry kind="lib" path="lib/DiabloLibrary.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

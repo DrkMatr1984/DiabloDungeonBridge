@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.server.EntityLiving;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.craftbukkit.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.inventory.CraftItemStack;
-import org.bukkit.entity.Entity;
+import org.bukkit.craftbukkit.entity.CraftMonster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -23,6 +18,8 @@ import org.bukkit.generator.ChunkGenerator;
 
 import com.modcrafting.diablodrops.events.EntitySpawnWithItemEvent;
 import com.modcrafting.diablodrops.events.RuinGenerateEvent;
+import com.modcrafting.diablolibrary.entities.DiabloMonster;
+import com.modcrafting.diablolibrary.items.DiabloItemStack;
 import com.timvisee.DungeonMaze.API.DungeonMazeAPI;
 import com.timvisee.DungeonMaze.event.generation.DMGenerationChestEvent;
 
@@ -69,8 +66,18 @@ public class DDBListener implements Listener
                 * DungeonMazeAPI.getDMLevel(event.getLocation().getBlock());
         if (chance >= (plugin.dd.gen.nextInt(100) + 1))
         {
-            List<CraftItemStack> items = new ArrayList<CraftItemStack>();
-            CraftItemStack ci = plugin.dd.dropsAPI.getItem();
+            CraftMonster cm;
+            try
+            {
+                cm = (CraftMonster) event.getEntity();
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+            DiabloMonster dle = new DiabloMonster(cm);
+            List<DiabloItemStack> items = new ArrayList<DiabloItemStack>();
+            DiabloItemStack ci = plugin.dd.dropsAPI.getItem();
             while (ci == null)
             {
                 ci = plugin.dd.dropsAPI.getItem();
@@ -89,10 +96,7 @@ public class DDBListener implements Listener
             plugin.getServer().getPluginManager().callEvent(eswi);
             if (eswi.isCancelled())
                 return;
-            for (CraftItemStack cis : eswi.getItems())
-            {
-                setEquipment(cis, event.getEntity());
-            }
+            dle.setEquipment(items.toArray(new DiabloItemStack[0]));
         }
     }
 
@@ -112,32 +116,6 @@ public class DDBListener implements Listener
                 .equals("com.timvisee.DungeonMaze.DungeonMazeGenerator"))
         {
             event.setCancelled(true);
-        }
-    }
-
-    private void setEquipment(final CraftItemStack ci, final Entity e)
-    {
-        Material mat = ci.getType();
-        EntityLiving ev = ((CraftLivingEntity) e).getHandle();
-        if (plugin.dd.drop.isBoots(mat))
-        {
-            ev.setEquipment(1, ci.getHandle());
-        }
-        else if (plugin.dd.drop.isChestPlate(mat))
-        {
-            ev.setEquipment(3, ci.getHandle());
-        }
-        else if (plugin.dd.drop.isLeggings(mat))
-        {
-            ev.setEquipment(2, ci.getHandle());
-        }
-        else if (plugin.dd.drop.isHelmet(mat))
-        {
-            ev.setEquipment(4, ci.getHandle());
-        }
-        else
-        {
-            ev.setEquipment(0, ci.getHandle());
         }
     }
 
