@@ -21,10 +21,11 @@ public class DDBTask implements Runnable
         for (int i = 0; i < DiabloDungeonBridge.instance.random
                 .nextInt(chestInv.getSize()); i++)
         {
-            ItemStack cis = DiabloDungeonBridge.instance.dd.dropsAPI.getItem();
+            ItemStack cis = DiabloDungeonBridge.instance.dd.getDropAPI()
+                    .getItem();
             while (cis == null)
             {
-                cis = DiabloDungeonBridge.instance.dd.dropsAPI.getItem();
+                cis = DiabloDungeonBridge.instance.dd.getDropAPI().getItem();
             }
             chestInv.setItem(i, cis);
         }
