@@ -11,9 +11,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import com.modcrafting.diablodrops.events.EntitySpawnEvent;
-import com.timvisee.dungeonmaze.api.DungeonMazeApi;
-import com.timvisee.dungeonmaze.api.DungeonMazeApiOld;
-import com.timvisee.dungeonmaze.event.generation.DMGenerationChestEvent;
+import com.timvisee.DungeonMaze.api.DungeonMazeApi;
+import com.timvisee.DungeonMaze.api.DungeonMazeApiOld;
+import com.timvisee.DungeonMaze.event.generation.DMGenerationChestEvent;
 
 public class DDBListener implements Listener
 {

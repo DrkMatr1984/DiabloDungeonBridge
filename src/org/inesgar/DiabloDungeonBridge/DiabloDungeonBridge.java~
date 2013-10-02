@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.modcrafting.ddchestregen.DDChestRegen;
 import com.modcrafting.diablodrops.DiabloDrops;
-import com.timvisee.dungeonmaze.DungeonMaze;
+import com.timvisee.DungeonMaze.DungeonMaze;
 
 public class DiabloDungeonBridge extends JavaPlugin
 {
